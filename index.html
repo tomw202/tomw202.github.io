@@ -30,6 +30,7 @@ var river = L.esri.featureLayer({
 }).addTo(map);
 
 //Add popup to river
+river.bindPopup(function (layer) {
    return L.Util.template("<p>I'm river {NAME} i flow {FLOWDIRCTN} <br> I'm also called {ALTNAME}", layer.feature.properties);
  });
 
