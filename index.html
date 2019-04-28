@@ -29,6 +29,23 @@ var river = L.esri.featureLayer({
   url: 'https://services.arcgis.com/qHLhLQrcvEnxjtPr/arcgis/rest/services/OSOpenRivers/FeatureServer/0'
 }).addTo(map);
 
+//Add popup to river
+   return L.Util.template("<p>I'm river {NAME} i flow {FLOWDIRCTN} <br> I'm also called {ALTNAME}", layer.feature.properties);
+ });
+
+
+//river.bindPopup("I'm River ")
+
+//Add coordinate report based on click
+/*var popup = L.popup();
+function onMapClick(e) {
+    popup
+        .setLatLng(e.latlng)
+        .setContent("You clicked the map at " + e.latlng.toString())
+        .openOn(map);
+}
+map.on('click', onMapClick);*/
+
   </script>
 </body>
 </html>
