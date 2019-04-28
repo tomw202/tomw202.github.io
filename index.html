@@ -24,7 +24,8 @@
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var busStops = L.esri.featureLayer({
+//Add OS Open Rivers
+var river = L.esri.featureLayer({
   url: 'https://services.arcgis.com/qHLhLQrcvEnxjtPr/arcgis/rest/services/OSOpenRivers/FeatureServer/0'
 }).addTo(map);
 
