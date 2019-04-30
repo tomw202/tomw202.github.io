@@ -12,6 +12,7 @@
    <script src="https://unpkg.com/esri-leaflet@2.2.3/dist/esri-leaflet.js"
    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
    crossorigin=""></script>
+   <script type ="text/javascript" src="styleFunctions.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -25,6 +26,25 @@
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors <br> Contains OS data'
   }).addTo(map);
 
+  //Add IMD
+var imdURL ='https://services.arcgis.com/XSeYKQzfXnEgju9o/ArcGIS/rest/services/IMD2015_7Domains/FeatureServer/0'
+  var imd = L.esri.featureLayer({
+    url: imdURL,
+    style: styleIMD
+  });
+  //Add popup to IMD
+  imd.bindPopup(function(layer){
+    return L.Util.template("{LSOA_Name}, {IMD_Decile}",layer.feature.properties)
+  });
+
+//Add Crime decile
+var crime = L.esri.featureLayer({
+  url: imdURL,
+  style: styleCrime
+});
+
+
+
   //Add counties
   var counties = L.esri.featureLayer({
   url: 'https://services.arcgis.com/qHLhLQrcvEnxjtPr/ArcGIS/rest/services/OS_Boundaryline/FeatureServer/3',
@@ -34,7 +54,7 @@
   });
 
   //Add popup to counties
-  counties.bindPopup(function (layer) {
+  counties.bindPopup(function(layer) {
    return L.Util.template("This is {NAME}", layer.feature.properties)
   });
 
@@ -48,9 +68,11 @@
   });
 
   var overlayers = {
+    "Index of Deprivation": imd,
+    "Index of Crime": crime,
     "Counties": counties,
     "Local Authorities": districtUA
-  };
+    };
 
   L.control.layers(null,overlayers).addTo(map);
 
