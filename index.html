@@ -13,7 +13,7 @@
    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
    crossorigin=""></script>
    <script type ="text/javascript" src="styleFunctions.js"></script>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+   <script stype ="text/javascript" src="https://github.com/tomw202/tomw202.github.io/blob/master/Station.geojson"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
 
   //Add Open Street Map basemap
   var basemap=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors <br> Contains OS data'
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors <br> Contains OS data © Crown copyright and database right (2019)'
   }).addTo(map);
 
   //Add IMD
@@ -45,9 +45,8 @@ var crime = L.esri.featureLayer({
 });
 
 //Add stations
-$.getJSON("https://github.com/tomw202/tomw202.github.io/blob/master/Station.geojson",function(data){
-  L.geoJson(data).addTo(map);
-});
+L.geoJson.AJAX(Station).addTo(map);
+
 
   //Add counties
   var counties = L.esri.featureLayer({
