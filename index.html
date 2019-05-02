@@ -45,7 +45,7 @@ var crime = L.esri.featureLayer({
 });
 
 //Add stations
-$.getJSON("stations.geojson",function(data){
+$.getJSON("http://tomw202.github.io/stations.geojson",function(data){
   L.geoJson(data).addTo(map);
 });
 
