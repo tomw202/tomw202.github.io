@@ -46,12 +46,21 @@ var crime = L.esri.featureLayer({
 
 //Add stations
 var pointStyle ={
-    "color": "#ffffff",
-    "weight": 5,
-    "opacity": 0.65
+    "color": "#000000",
+    "weight": 2,
+    "opacity": 1,
+    "radius":4,
+    "fillOpacity":1
 };
-L.geoJson(osStations,{style:pointStyle}).addTo(map);
-
+function stationPopUp(feature,layer){
+  layer.bindPopup(feature.properties.DISTNAME);
+}
+L.geoJson(osStations,{
+  onEachFeature:stationPopUp,
+  pointToLayer:function(feature,latlng){
+    return L.circleMarker(latlng,pointStyle);
+  }
+}).addTo(map);
 
   //Add counties
   var counties = L.esri.featureLayer({
