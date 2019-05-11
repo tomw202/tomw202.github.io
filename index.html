@@ -13,7 +13,7 @@
    integrity="sha512-YZ6b5bXRVwipfqul5krehD9qlbJzc6KOGXYsDjU9HHXW2gK57xmWl2gU6nAegiErAqFXhygKIsWPKbjLPXVb2g=="
    crossorigin=""></script>
    <script type ="text/javascript" src="styleFunctions.js"></script>
-   <script stype ="text/javascript" src="https://github.com/tomw202/tomw202.github.io/blob/master/Station.geojson"></script>
+   <script stype ="text/javascript" src="osStations.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -45,7 +45,12 @@ var crime = L.esri.featureLayer({
 });
 
 //Add stations
-L.geoJson.AJAX(Station).addTo(map);
+var pointStyle ={
+    "color": "#ffffff",
+    "weight": 5,
+    "opacity": 0.65
+};
+L.geoJson(osStations,{style:pointStyle}).addTo(map);
 
 
   //Add counties
